@@ -10,7 +10,6 @@ import com.google.gson.JsonSyntaxException;
 import com.microsoft.jenkins.kubernetes.util.Constants;
 import io.kubernetes.client.openapi.ApiException;
 import io.kubernetes.client.openapi.models.V1ObjectMeta;
-import io.kubernetes.client.openapi.models.V1Status;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
@@ -105,7 +104,7 @@ public abstract class ResourceManager {
 
         final void delete() {
             try {
-                V1Status status = deleteResource(get());
+                Object status = deleteResource(get());
                 logDeleted(status);
             } catch (JsonSyntaxException e) {
                 if (e.getCause() instanceof IllegalStateException) {
@@ -131,7 +130,7 @@ public abstract class ResourceManager {
 
         abstract T createResource(T current);
 
-        abstract V1Status deleteResource(T current);
+        abstract Object deleteResource(T current);
 
         abstract void notifyUpdate(T original, T current);
 
@@ -142,7 +141,7 @@ public abstract class ResourceManager {
         void logCreated(T res) {
             getConsoleLogger().println(Messages.KubernetesClientWrapper_created(res.getClass().getSimpleName(), res));
         }
-        void logDeleted(V1Status status) {
+        void logDeleted(Object status) {
             if (status != null) {
                 getConsoleLogger().println(
                         Messages.KubernetesClientWrapper_deleted(get().getClass().getSimpleName(), status));

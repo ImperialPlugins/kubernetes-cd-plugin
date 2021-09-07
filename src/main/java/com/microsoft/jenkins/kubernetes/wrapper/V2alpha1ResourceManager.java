@@ -82,7 +82,7 @@ public class V2alpha1ResourceManager extends ResourceManager {
         }
 
         @Override
-        V1Status deleteResource(V2alpha1CronJob current) {
+        Object deleteResource(V2alpha1CronJob current) {
             V1Status result = null;
             try {
                 result = batchV2alpha1Api.deleteNamespacedCronJob(

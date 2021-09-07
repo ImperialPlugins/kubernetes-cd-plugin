@@ -181,7 +181,7 @@ public class V1ResourceManager extends ResourceManager {
         }
 
         @Override
-        V1Status deleteResource(V1ReplicaSet current) {
+        Object deleteResource(V1ReplicaSet current) {
             V1Status result = null;
             try {
                 result = appsV1ApiInstance.deleteNamespacedReplicaSet(
@@ -693,8 +693,8 @@ public class V1ResourceManager extends ResourceManager {
         }
 
         @Override
-        V1Status deleteResource(V1Pod current) {
-            V1Status result = null;
+        Object deleteResource(V1Pod current) {
+            V1Pod result = null;
             try {
                 result = coreV1ApiInstance.deleteNamespacedPod(
                         getName(), getNamespace(), getPretty(), null, null, null, null, null);
@@ -1128,8 +1128,8 @@ public class V1ResourceManager extends ResourceManager {
         }
 
         @Override
-        V1Status deleteResource(V1PersistentVolumeClaim current) {
-            V1Status result = null;
+        Object deleteResource(V1PersistentVolumeClaim current) {
+            V1PersistentVolumeClaim result = null;
             try {
                 result = coreV1ApiInstance.deleteNamespacedPersistentVolumeClaim(
                         getName(), getNamespace(), getPretty(),
@@ -1188,8 +1188,8 @@ public class V1ResourceManager extends ResourceManager {
         }
 
         @Override
-        V1Status deleteResource(V1PersistentVolume current) {
-            V1Status result = null;
+        Object deleteResource(V1PersistentVolume current) {
+            V1PersistentVolume result = null;
             try {
                 result = coreV1ApiInstance.deletePersistentVolume(
                         getName(), getPretty(),
@@ -1428,8 +1428,8 @@ public class V1ResourceManager extends ResourceManager {
         }
 
         @Override
-        V1Status deleteResource(V1ServiceAccount current) {
-            V1Status result = null;
+        Object deleteResource(V1ServiceAccount current) {
+            V1ServiceAccount result = null;
             try {
                 result = coreV1ApiInstance.deleteNamespacedServiceAccount(
                         getName(), getNamespace(), getPretty(),

@@ -82,7 +82,7 @@ public class V2beta2ResourceManager extends ResourceManager {
         }
 
         @Override
-        V1Status deleteResource(V2beta2HorizontalPodAutoscaler current) {
+        Object deleteResource(V2beta2HorizontalPodAutoscaler current) {
             V1Status result = null;
             try {
                 result = autoscalingV2beta2Api.deleteNamespacedHorizontalPodAutoscaler(

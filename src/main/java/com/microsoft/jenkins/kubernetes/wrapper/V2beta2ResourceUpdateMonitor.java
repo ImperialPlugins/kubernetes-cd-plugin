@@ -3,8 +3,6 @@ package com.microsoft.jenkins.kubernetes.wrapper;
 import io.kubernetes.client.openapi.models.V2beta2HorizontalPodAutoscaler;
 
 public interface V2beta2ResourceUpdateMonitor {
-
-
     V2beta2ResourceUpdateMonitor NOOP = new Adapter();
 
     void onHorizontalPodAutoscalerUpdate(

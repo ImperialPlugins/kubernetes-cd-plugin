@@ -16,8 +16,8 @@ import hudson.util.VariableResolver;
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.ApiException;
 import io.kubernetes.client.openapi.models.V1Namespace;
+import io.kubernetes.client.openapi.models.V1ObjectMeta;
 import io.kubernetes.client.openapi.models.V1Secret;
-import io.kubernetes.client.openapi.models.V1SecretBuilder;
 import io.kubernetes.client.util.ClientBuilder;
 import io.kubernetes.client.util.Config;
 import io.kubernetes.client.util.KubeConfig;
@@ -325,14 +325,16 @@ public class KubernetesClientWrapper {
 
         Map<String, String> data = new HashMap<>();
         data.put(".dockercfg", dockercfg);
-        V1Secret secret = new V1SecretBuilder()
-                .withNewMetadata()
-                .withName(secretName)
-                .withNamespace(kubernetesNamespace)
-                .endMetadata()
-                .withStringData(data)
-                .withType("kubernetes.io/dockercfg")
-                .build();
+
+        V1ObjectMeta meta = new V1ObjectMeta();
+        meta.setName(secretName);
+        meta.setNamespace(kubernetesNamespace);
+
+        V1Secret secret = new V1Secret();
+        secret.setMetadata(meta);
+        secret.setStringData(data);
+        secret.setType("kubernetes.io/dockercfg");
+
         handleResource(secret);
     }
 
