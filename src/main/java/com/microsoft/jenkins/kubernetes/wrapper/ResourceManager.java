@@ -176,7 +176,7 @@ public abstract class ResourceManager {
         }
         String responseBody = e.getResponseBody();
         getConsoleLogger().println(Messages.KubernetesClientWrapper_apiException(code, responseBody));
-        throw new RuntimeException(e);
+        throw new RuntimeException(Messages.KubernetesClientWrapper_apiException(code, responseBody), e);
     }
 
     /**

@@ -148,8 +148,7 @@ public class V1ResourceManager extends ResourceManager {
         V1ReplicaSet getCurrentResource() {
             V1ReplicaSet replicaSet = null;
             try {
-                replicaSet = appsV1ApiInstance.readNamespacedReplicaSet(getName(), getNamespace(), getPretty(),
-                        true, true);
+                replicaSet = appsV1ApiInstance.readNamespacedReplicaSet(getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -161,7 +160,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ReplicaSet replicaSet = null;
             try {
                 replicaSet = appsV1ApiInstance.replaceNamespacedReplicaSet(getName(), getNamespace(), current,
-                        getPretty(), null, null);
+                        getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -173,7 +172,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ReplicaSet replicaSet = null;
             try {
                 replicaSet = appsV1ApiInstance.createNamespacedReplicaSet(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -207,8 +206,7 @@ public class V1ResourceManager extends ResourceManager {
         V1Deployment getCurrentResource() {
             V1Deployment deployment = null;
             try {
-                deployment = appsV1ApiInstance.readNamespacedDeployment(getName(), getNamespace(), getPretty(),
-                        true, true);
+                deployment = appsV1ApiInstance.readNamespacedDeployment(getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -220,7 +218,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Deployment deployment = null;
             try {
                 deployment = appsV1ApiInstance.replaceNamespacedDeployment(getName(), getNamespace(), current,
-                        getPretty(), null, null);
+                        getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -232,7 +230,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Deployment deployment = null;
             try {
                 deployment = appsV1ApiInstance.createNamespacedDeployment(
-                        getNamespace(), current,  getPretty(), null, null);
+                        getNamespace(), current,  getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -267,8 +265,7 @@ public class V1ResourceManager extends ResourceManager {
         V1DaemonSet getCurrentResource() {
             V1DaemonSet daemonSet = null;
             try {
-                daemonSet = appsV1ApiInstance.readNamespacedDaemonSet(getName(), getNamespace(), getPretty(),
-                        true, true);
+                daemonSet = appsV1ApiInstance.readNamespacedDaemonSet(getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -280,7 +277,7 @@ public class V1ResourceManager extends ResourceManager {
             V1DaemonSet daemonSet = null;
             try {
                 daemonSet = appsV1ApiInstance.replaceNamespacedDaemonSet(getName(), getNamespace(), current,
-                        getPretty(), null, null);
+                        getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -292,7 +289,7 @@ public class V1ResourceManager extends ResourceManager {
             V1DaemonSet daemonSet = null;
             try {
                 daemonSet = appsV1ApiInstance.createNamespacedDaemonSet(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -327,7 +324,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ReplicationController replicationController = null;
             try {
                 replicationController = coreV1ApiInstance.readNamespacedReplicationController(getName(),
-                        getNamespace(), getPretty(), true, true);
+                        getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -339,7 +336,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ReplicationController replicationController = null;
             try {
                 replicationController = coreV1ApiInstance.replaceNamespacedReplicationController(getName(),
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -351,7 +348,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ReplicationController replicationController = null;
             try {
                 replicationController = coreV1ApiInstance.createNamespacedReplicationController(getNamespace(),
-                        current, getPretty(), null, null);
+                        current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -385,8 +382,7 @@ public class V1ResourceManager extends ResourceManager {
         V1Service getCurrentResource() {
             V1Service service = null;
             try {
-                service = coreV1ApiInstance.readNamespacedService(getName(), getNamespace(), getPretty(),
-                        true, null);
+                service = coreV1ApiInstance.readNamespacedService(getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -444,7 +440,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Service service = null;
             try {
                 service = coreV1ApiInstance.replaceNamespacedService(getName(), getNamespace(),
-                        current, getPretty(), null, null);
+                        current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -456,7 +452,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Service service = null;
             try {
                 service = coreV1ApiInstance.createNamespacedService(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -464,8 +460,8 @@ public class V1ResourceManager extends ResourceManager {
         }
 
         @Override
-        V1Status deleteResource(V1Service current) {
-            V1Status result = null;
+        V1Service deleteResource(V1Service current) {
+            V1Service result = null;
             try {
                 result = coreV1ApiInstance.deleteNamespacedService(
                         getName(), getNamespace(), getPretty(), null, null, null, null, null);
@@ -490,7 +486,7 @@ public class V1ResourceManager extends ResourceManager {
         V1Job getCurrentResource() {
             V1Job job = null;
             try {
-                job = batchV1ApiInstance.readNamespacedJob(getName(), getNamespace(), getPretty(), true, true);
+                job = batchV1ApiInstance.readNamespacedJob(getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -503,7 +499,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Job putJob = getPutObject(original, current);
             try {
                 job = batchV1ApiInstance.replaceNamespacedJob(
-                        getName(), getNamespace(), putJob, getPretty(), null, null);
+                        getName(), getNamespace(), putJob, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -533,7 +529,7 @@ public class V1ResourceManager extends ResourceManager {
             dryRunReq.getMetadata().setNamespace(getNamespace());
             try {
                 dryRunRes = batchV1ApiInstance.createNamespacedJob(dryRunReq.getMetadata().getNamespace(),
-                        dryRunReq,  getPretty(), DRY_RUN_ALL, null);
+                        dryRunReq,  getPretty(), DRY_RUN_ALL, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -574,7 +570,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Job job = null;
             try {
                 job = batchV1ApiInstance.createNamespacedJob(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -608,7 +604,7 @@ public class V1ResourceManager extends ResourceManager {
         V1Pod getCurrentResource() {
             V1Pod pod = null;
             try {
-                pod = coreV1ApiInstance.readNamespacedPod(getName(), getNamespace(), getPretty(), true, true);
+                pod = coreV1ApiInstance.readNamespacedPod(getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -621,7 +617,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Pod putPod = getPutObject(original, current);
             try {
                 pod = coreV1ApiInstance.replaceNamespacedPod(
-                        getName(), getNamespace(), putPod, getPretty(), null, null);
+                        getName(), getNamespace(), putPod, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -651,7 +647,7 @@ public class V1ResourceManager extends ResourceManager {
             dryRunReq.getMetadata().setNamespace(getNamespace());
             try {
                 dryRunRes = coreV1ApiInstance.createNamespacedPod(dryRunReq.getMetadata().getNamespace(),
-                        dryRunReq, getPretty(), DRY_RUN_ALL, null);
+                        dryRunReq, getPretty(), DRY_RUN_ALL, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -685,7 +681,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Pod pod = null;
             try {
                 pod = coreV1ApiInstance.createNamespacedPod(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -720,7 +716,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ConfigMap configMap = null;
             try {
                 configMap = coreV1ApiInstance.readNamespacedConfigMap(getName(), getNamespace(),
-                        getPretty(), true, true);
+                        getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -732,7 +728,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ConfigMap configMap = null;
             try {
                 configMap = coreV1ApiInstance.replaceNamespacedConfigMap(getName(), getNamespace(),
-                        current, getPretty(), null, null);
+                        current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -744,7 +740,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ConfigMap configMap = null;
             try {
                 configMap = coreV1ApiInstance.createNamespacedConfigMap(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -779,7 +775,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Secret secret = null;
             try {
                 secret = coreV1ApiInstance.readNamespacedSecret(
-                        getName(), getNamespace(), getPretty(), true, true);
+                        getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -791,7 +787,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Secret secret = null;
             try {
                 secret = coreV1ApiInstance.replaceNamespacedSecret(
-                        getName(), getNamespace(), current, getPretty(), null, null);
+                        getName(), getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -803,7 +799,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Secret secret = null;
             try {
                 secret = coreV1ApiInstance.createNamespacedSecret(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -848,7 +844,7 @@ public class V1ResourceManager extends ResourceManager {
         V1Namespace getCurrentResource() {
             V1Namespace result = null;
             try {
-                result = coreV1ApiInstance.readNamespace(getName(), getPretty(), true, true);
+                result = coreV1ApiInstance.readNamespace(getName(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -859,7 +855,7 @@ public class V1ResourceManager extends ResourceManager {
         V1Namespace applyResource(V1Namespace original, V1Namespace current) {
             V1Namespace result = null;
             try {
-                result = coreV1ApiInstance.replaceNamespace(getName(), current, getPretty(), null, null);
+                result = coreV1ApiInstance.replaceNamespace(getName(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -870,7 +866,7 @@ public class V1ResourceManager extends ResourceManager {
         V1Namespace createResource(V1Namespace current) {
             V1Namespace result = null;
             try {
-                result = coreV1ApiInstance.createNamespace(current, getPretty(), null, null);
+                result = coreV1ApiInstance.createNamespace(current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -905,7 +901,7 @@ public class V1ResourceManager extends ResourceManager {
             V1HorizontalPodAutoscaler result = null;
             try {
                 result = autoscalingV1Api.readNamespacedHorizontalPodAutoscaler(
-                        getName(), getNamespace(), getPretty(), true, true);
+                        getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -917,7 +913,7 @@ public class V1ResourceManager extends ResourceManager {
             V1HorizontalPodAutoscaler result = null;
             try {
                 result = autoscalingV1Api.replaceNamespacedHorizontalPodAutoscaler(
-                        getName(), getNamespace(), current, getPretty(), null, null);
+                        getName(), getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -929,7 +925,7 @@ public class V1ResourceManager extends ResourceManager {
             V1HorizontalPodAutoscaler result = null;
             try {
                 result = autoscalingV1Api.createNamespacedHorizontalPodAutoscaler(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -965,7 +961,7 @@ public class V1ResourceManager extends ResourceManager {
             V1StatefulSet result = null;
             try {
                 result = appsV1ApiInstance.readNamespacedStatefulSet(
-                        getName(), getNamespace(), getPretty(), true, true);
+                        getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -978,7 +974,7 @@ public class V1ResourceManager extends ResourceManager {
             try {
                 V1StatefulSet putStatefulSet = getPutObject(original, current);
                 result = appsV1ApiInstance.replaceNamespacedStatefulSet(
-                        getName(), getNamespace(), putStatefulSet, getPretty(), null, null);
+                        getName(), getNamespace(), putStatefulSet, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -990,7 +986,7 @@ public class V1ResourceManager extends ResourceManager {
             V1StatefulSet result = null;
             try {
                 result = appsV1ApiInstance.createNamespacedStatefulSet(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1033,7 +1029,7 @@ public class V1ResourceManager extends ResourceManager {
             dryRunReq.getMetadata().setNamespace(getNamespace());
             try {
                 dryRunRes = appsV1ApiInstance.createNamespacedStatefulSet(dryRunReq.getMetadata().getNamespace(),
-                        dryRunReq, getPretty(), DRY_RUN_ALL, null);
+                        dryRunReq, getPretty(), DRY_RUN_ALL, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1074,7 +1070,7 @@ public class V1ResourceManager extends ResourceManager {
             V1PersistentVolumeClaim result = null;
             try {
                 result = coreV1ApiInstance.readNamespacedPersistentVolumeClaim(
-                        getName(), getNamespace(), getPretty(), true, true);
+                        getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -1108,7 +1104,7 @@ public class V1ResourceManager extends ResourceManager {
             V1PersistentVolumeClaim result = null;
             try {
                 result = coreV1ApiInstance.replaceNamespacedPersistentVolumeClaim(
-                        getName(), getNamespace(), current, getPretty(), null, null);
+                        getName(), getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1120,7 +1116,7 @@ public class V1ResourceManager extends ResourceManager {
             V1PersistentVolumeClaim result = null;
             try {
                 result = coreV1ApiInstance.createNamespacedPersistentVolumeClaim(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1156,7 +1152,7 @@ public class V1ResourceManager extends ResourceManager {
             V1PersistentVolume result = null;
             try {
                 result = coreV1ApiInstance.readPersistentVolume(
-                        getName(), getPretty(), true, true);
+                        getName(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -1168,7 +1164,7 @@ public class V1ResourceManager extends ResourceManager {
             V1PersistentVolume result = null;
             try {
                 result = coreV1ApiInstance.replacePersistentVolume(
-                        getName(), current, getPretty(), null, null);
+                        getName(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1180,7 +1176,7 @@ public class V1ResourceManager extends ResourceManager {
             V1PersistentVolume result = null;
             try {
                 result = coreV1ApiInstance.createPersistentVolume(
-                        current, getPretty(), null, null);
+                        current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1216,7 +1212,7 @@ public class V1ResourceManager extends ResourceManager {
             V1NetworkPolicy result = null;
             try {
                 result = networkingV1Api.readNamespacedNetworkPolicy(
-                        getName(), getNamespace(), getPretty(), true, true);
+                        getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -1228,7 +1224,7 @@ public class V1ResourceManager extends ResourceManager {
             V1NetworkPolicy result = null;
             try {
                 result = networkingV1Api.replaceNamespacedNetworkPolicy(
-                        getName(), getNamespace(), current, getPretty(), null, null);
+                        getName(), getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1240,7 +1236,7 @@ public class V1ResourceManager extends ResourceManager {
             V1NetworkPolicy result = null;
             try {
                 result = networkingV1Api.createNamespacedNetworkPolicy(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1288,7 +1284,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Role result = null;
             try {
                 result = rbacV1Api.replaceNamespacedRole(
-                        getName(), getNamespace(), current, getPretty(), null, null);
+                        getName(), getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1300,7 +1296,7 @@ public class V1ResourceManager extends ResourceManager {
             V1Role result = null;
             try {
                 result = rbacV1Api.createNamespacedRole(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1348,7 +1344,7 @@ public class V1ResourceManager extends ResourceManager {
             V1RoleBinding result = null;
             try {
                 result = rbacV1Api.replaceNamespacedRoleBinding(
-                        getName(), getNamespace(), current, getPretty(), null, null);
+                        getName(), getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1360,7 +1356,7 @@ public class V1ResourceManager extends ResourceManager {
             V1RoleBinding result = null;
             try {
                 result = rbacV1Api.createNamespacedRoleBinding(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1396,7 +1392,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ServiceAccount result = null;
             try {
                 result = coreV1ApiInstance.readNamespacedServiceAccount(
-                        getName(), getNamespace(), getPretty(), true, true);
+                        getName(), getNamespace(), getPretty());
             } catch (ApiException e) {
                 handleApiExceptionExceptNotFound(e);
             }
@@ -1408,7 +1404,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ServiceAccount result = null;
             try {
                 result = coreV1ApiInstance.replaceNamespacedServiceAccount(
-                        getName(), getNamespace(), current, getPretty(), null, null);
+                        getName(), getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1420,7 +1416,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ServiceAccount result = null;
             try {
                 result = coreV1ApiInstance.createNamespacedServiceAccount(
-                        getNamespace(), current, getPretty(), null, null);
+                        getNamespace(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1468,7 +1464,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ClusterRole result = null;
             try {
                 result = rbacV1Api.replaceClusterRole(
-                        getName(), current, getPretty(), null, null);
+                        getName(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1480,7 +1476,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ClusterRole result = null;
             try {
                 result = rbacV1Api.createClusterRole(
-                         current, getPretty(), null, null);
+                         current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1528,7 +1524,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ClusterRoleBinding result = null;
             try {
                 result = rbacV1Api.replaceClusterRoleBinding(
-                        getName(), current, getPretty(), null, null);
+                        getName(), current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }
@@ -1540,7 +1536,7 @@ public class V1ResourceManager extends ResourceManager {
             V1ClusterRoleBinding result = null;
             try {
                 result = rbacV1Api.createClusterRoleBinding(
-                         current, getPretty(), null, null);
+                         current, getPretty(), null, null, null);
             } catch (ApiException e) {
                 handleApiException(e);
             }

@@ -17,17 +17,19 @@
         <enforcer.skip>true</enforcer.skip>
         <changelist>-SNAPSHOT</changelist>
         <!-- Baseline Jenkins version you use to build the plugin. Users must have this version or newer to run. -->
-        <jenkins.version>2.303.1</jenkins.version>
+        <jenkins.version>2.375.1</jenkins.version>
         <java.level>8</java.level>
 
         <azure-commons-version>1.1.3</azure-commons-version>
-        <credentials.version>2.4.0.1</credentials.version>
-        <docker-commons.version>1.17</docker-commons.version>
+        <credentials.version>2.6.2</credentials.version>
+        <docker-commons.version>1.21</docker-commons.version>
         <ssh-credentials.version>1.18.1</ssh-credentials.version>
         <workflow-step-api.version>2.24</workflow-step-api.version>
-        <jackson.version>2.12.1</jackson.version>
+        <jackson.version>2.14.1</jackson.version>
+        <gmaven.version>1.0</gmaven.version>
+        <maven-hpi.version>3.37</maven-hpi.version>
 
-        <kubernetes-client.version>13.0.0</kubernetes-client.version>
+        <kubernetes-client.version>17.0.0</kubernetes-client.version>
     </properties>
 
     <name>Kubernetes Continuous Deploy Plugin</name>
@@ -228,6 +230,7 @@
             <plugin>
                 <groupId>org.jenkins-ci.tools</groupId>
                 <artifactId>maven-hpi-plugin</artifactId>
+                <version>${maven-hpi.version}</version>
                 <configuration>
                     <minimumJavaVersion>1.8</minimumJavaVersion>
                     <compatibleSinceVersion>1.0.0</compatibleSinceVersion>
@@ -266,38 +269,16 @@
                         <goals>
                             <goal>execute</goal>
                         </goals>
-                        <configuration>
-                            <scriptpath>
-                                <element>${basedir}/src/main/script</element>
-                            </scriptpath>
-                            <source>
-                                KubernetesModelClassesGen kubernetesModelGen = new KubernetesModelClassesGen()
-                                kubernetesModelGen.generate(project, 'io.kubesphere.jenkins.kubernetes.generated', 'KubernetesModelClasses')
-                            </source>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
-                    <encoding>UTF-8</encoding>
-                    <consoleOutput>true</consoleOutput>
-                    <resourceIncludes>src/main/resources/**</resourceIncludes>
-                    <excludes>**/generated/**</excludes>
+                    <scriptpath>
+                        <element>${basedir}/src/main/script</element>
+                    </scriptpath>
+                    <source>
+                        KubernetesModelClassesGen kubernetesModelGen = new KubernetesModelClassesGen()
+                        kubernetesModelGen.generate(project, 'io.kubesphere.jenkins.kubernetes.generated', 'KubernetesModelClasses')
+                    </source>
                 </configuration>
             </plugin>
         </plugins>

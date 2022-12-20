@@ -1,6 +1,5 @@
 package com.microsoft.jenkins.kubernetes.wrapper;
 
-import io.kubernetes.client.openapi.models.NetworkingV1beta1Ingress;
 import io.kubernetes.client.openapi.models.V1ClusterRole;
 import io.kubernetes.client.openapi.models.V1ClusterRoleBinding;
 import io.kubernetes.client.openapi.models.V1ConfigMap;
@@ -21,10 +20,6 @@ import io.kubernetes.client.openapi.models.V1Secret;
 import io.kubernetes.client.openapi.models.V1Service;
 import io.kubernetes.client.openapi.models.V1ServiceAccount;
 import io.kubernetes.client.openapi.models.V1StatefulSet;
-import io.kubernetes.client.openapi.models.V1beta1CronJob;
-import io.kubernetes.client.openapi.models.ExtensionsV1beta1Ingress;
-import io.kubernetes.client.openapi.models.V2alpha1CronJob;
-import io.kubernetes.client.openapi.models.V2beta1HorizontalPodAutoscaler;
 import io.kubernetes.client.openapi.models.V2beta2HorizontalPodAutoscaler;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -80,24 +75,6 @@ public final class ResourceUpdaterMap extends HashMap<Class<?>,
                 Pair.of(V1ResourceManager.class, V1ResourceManager.ClusterRoleUpdater.class));
         put(V1ClusterRoleBinding.class,
                 Pair.of(V1ResourceManager.class, V1ResourceManager.ClusterRoleBindingUpdater.class));
-
-
-
-        put(ExtensionsV1beta1Ingress.class,
-                Pair.of(V1beta1ResourceManager.class, V1beta1ResourceManager.ExtensionsIngressUpdater.class));
-        put(NetworkingV1beta1Ingress.class,
-                Pair.of(V1beta1ResourceManager.class, V1beta1ResourceManager.NetworkingIngressUpdater.class));
-        put(V1beta1CronJob.class,
-                Pair.of(V1beta1ResourceManager.class, V1beta1ResourceManager.CronJobUpdater.class));
-
-        put(V2beta1HorizontalPodAutoscaler.class,
-                Pair.of(V2beta1ResourceManager.class, V2beta1ResourceManager.HorizontalPodAutoscalerUpdater.class));
-
-        put(V2beta2HorizontalPodAutoscaler.class,
-                Pair.of(V2beta2ResourceManager.class, V2beta2ResourceManager.HorizontalPodAutoscalerUpdater.class));
-
-        put(V2alpha1CronJob.class,
-                Pair.of(V2alpha1ResourceManager.class, V2alpha1ResourceManager.CronJobUpdater.class));
     }
 
     public static Map<Class<?>, Pair<Class<? extends ResourceManager>,
