@@ -1,5 +1,9 @@
 # Kubernetes Continuous Deploy Plugin
 
+## Fork Features
+* Updated to latest Kubernetes & Jenkins
+* Istio CRD's are included
+
 A Jenkins plugin to deploy resource configurations to a Kubernetes cluster.
 
 It provides the following features:
